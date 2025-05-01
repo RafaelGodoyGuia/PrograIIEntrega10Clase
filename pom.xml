@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Asegúrate que estos valores coincidan con tu proyecto -->
+    <!-- Puedes cambiarlos si lo deseas -->
+    <groupId>com.ejercicio102</groupId>
+    <artifactId>doble-master-validator</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- Codificación del proyecto -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Versión de Java para compilación -->
+        <!-- Cambia '11' por la versión de tu JDK si es diferente (ej: 8, 17, 21) -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- Versión de JUnit 5 (usa una versión estable reciente) -->
+        <junit.jupiter.version>5.9.2</junit.jupiter.version>
+
+        <!-- Versiones de plugins (opcional pero buena práctica definirlas) -->
+        <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
+        <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+
+    </properties>
+
+    <dependencies>
+        <!-- =============================================================== -->
+        <!-- ================ DEPENDENCIAS DE JUNIT 5 (TEST) =============== -->
+        <!-- =============================================================== -->
+
+        <!-- JUnit Jupiter API: Necesaria para escribir los tests (@Test, Assertions, etc.) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <!-- 'scope test' significa que esta librería solo se usa para compilar y ejecutar tests -->
+            <!-- No se incluirá en el empaquetado final de la aplicación (si lo hubiera) -->
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit Jupiter Engine: Necesaria para poder ejecutar los tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- =============================================================== -->
+        <!-- ============ OTRAS DEPENDENCIAS (SI LAS NECESITAS) ============ -->
+        <!-- =============================================================== -->
+        <!-- Si tu código principal necesitara otras librerías (ej: Apache Commons, etc.) -->
+        <!-- las añadirías aquí, usualmente sin '<scope>test</scope>' -->
+        <!-- <dependency> -->
+        <!--     <groupId>groupId_ejemplo</groupId> -->
+        <!--     <artifactId>artifactId_ejemplo</artifactId> -->
+        <!--     <version>version_ejemplo</version> -->
+        <!-- </dependency> -->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Plugin para configurar la versión de Java usada por el compilador -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version> <!-- Usa la versión de properties -->
+                <configuration>
+                    <source>${maven.compiler.source}</source> <!-- Usa la versión de properties -->
+                    <target>${maven.compiler.target}</target> <!-- Usa la versión de properties -->
+                </configuration>
+            </plugin>
+
+            <!-- Plugin para ejecutar los tests (Surefire) -->
+            <!-- Aunque IntelliJ tiene su propio runner, es bueno tenerlo para compatibilidad -->
+            <!-- y ejecución desde línea de comandos con 'mvn test' -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version> <!-- Usa la versión de properties -->
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
